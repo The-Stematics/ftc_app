@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.BeltDriveRobot;
 
-@Autonomous(name = "MecanumDriveAutonomous", group = "AutonomousMode")
+@Autonomous(name = "BeltDriveAutonomous", group = "AutonomousMode")
 //@Disabled
 
 public class BeltDriveAutonomous extends LinearOpMode

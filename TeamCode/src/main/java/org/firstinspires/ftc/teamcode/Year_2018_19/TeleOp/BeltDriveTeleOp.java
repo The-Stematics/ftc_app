@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.BeltDriveRobot;
 
-@TeleOp(name="TileRunnerTeleOp", group="TeleOpMode")
+@TeleOp(name="BeltDriveTeleOp", group="TeleOpMode")
 //@Disabled
 
 public class BeltDriveTeleOp extends OpMode
