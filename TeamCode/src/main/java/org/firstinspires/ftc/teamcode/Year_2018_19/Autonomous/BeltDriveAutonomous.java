@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode.Year_2018_19.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.MecanumDriveRobot;
+import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.BeltDriveRobot;
 
 @Autonomous(name = "MecanumDriveAutonomous", group = "AutonomousMode")
 //@Disabled
 
-public class MecanumDriveAutonomous extends LinearOpMode
+public class BeltDriveAutonomous extends LinearOpMode
 {
-    private MecanumDriveRobot robot = new MecanumDriveRobot();
+    private BeltDriveRobot robot = new BeltDriveRobot();
 
     public void runOpMode()
     {
@@ -30,19 +30,19 @@ public class MecanumDriveAutonomous extends LinearOpMode
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
 
-        if (robot.alliance == "Red Left Alliance")
+        if (robot.alliance.equals("Red Left Alliance"))
         {
             BlueLeftAlliance();
         }
-        else if (robot.alliance == "Red Right Alliance")
+        else if (robot.alliance.equals("Red Right Alliance"))
         {
             BlueRightAlliance();
         }
-        else if (robot.alliance == "Blue Left Alliance")
+        else if (robot.alliance.equals("Blue Left Alliance"))
         {
             RedLeftAlliance();
         }
-        else if (robot.alliance == "Blue Right Alliance")
+        else if (robot.alliance.equals("Blue Right Alliance"))
         {
             RedRightAlliance();
         }
