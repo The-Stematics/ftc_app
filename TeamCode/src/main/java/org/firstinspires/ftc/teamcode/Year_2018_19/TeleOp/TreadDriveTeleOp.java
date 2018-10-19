@@ -27,17 +27,74 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
         telemetry.update(); //Updates telemetry messages
     }
 
-    public void loop() //Method that runs in a loop when robot starts
+    public void loop()
     {
-        robot.leftDrive.setPower(-gamepad1.left_stick_y); //Controls top left motor
-        robot.rightDrive.setPower(-gamepad1.right_stick_y); //Controls bottom left motor
+        /*                         Drive Motors                              */
+        if (gamepad1.left_stick_button)
+        {
+            robot.drivePower = 0.5f;
+        }
+        if (gamepad1.right_stick_button) {
+            robot.drivePower = 1;
+        }
+        robot.leftDrive.setPower(-gamepad1.left_stick_y * robot.drivePower);
+        robot.leftDrive.setPower(-gamepad1.right_stick_y * robot.drivePower);
 
-        if (this.gamepad1.x) { //If Gamepad 1 X Button Pressed
+
+
+
+        /*                         Music                              */
+
+        if (gamepad1.x) { //If Gamepad 1 X Button Pressed
             robot.playMusic(this.hardwareMap.appContext); //Plays music
         }
         else if (gamepad1.y) { //If Gamepad 1 Y Button Pressed
             robot.stopMusic(); //Stops music.
         }
+
+
+
+
+
+        /*                         Shoulder Arm                              */
+        robot.shoulderArm.setPower(-gamepad1.left_trigger);
+        robot.shoulderArm.setPower(gamepad1.right_trigger);
+
+
+
+
+        /*                         Rack and Pinion                              */
+
+        if (gamepad1.a)
+        {
+            robot.racknPinion.setPower(-0.5);
+        }
+        if (gamepad1.b)
+        {
+            robot.racknPinion.setPower(0.5);
+        }
+
+
+
+
+
+
+        /*                         Claw                              */
+
+        if (gamepad1.left_bumper)
+        {
+            robot.claw.setPosition(1); //Go down
+        }
+
+        if (gamepad1.right_bumper)
+        {
+            robot.claw.setPosition(0.25); //Go up
+        }
+
+
+
+
+
 
         telemetry.addData("Left Drive", robot.leftDrive.getPower()); //Left Drive Telemetry Message
         telemetry.addData("Right Drive", robot.rightDrive.getPower()); //Right Drive Telemetry Message

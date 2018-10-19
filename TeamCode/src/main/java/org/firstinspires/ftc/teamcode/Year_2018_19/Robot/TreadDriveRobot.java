@@ -23,8 +23,11 @@ public class TreadDriveRobot
     //The hardware components.
     public DcMotor leftDrive;
     public DcMotor rightDrive;
+    public DcMotor shoulderArm;
+    public DcMotor racknPinion;
+    public Servo claw;
+    public float drivePower;
 
-    public IntegratingGyroscope gyroSensor;
     public ColorSensor lineFollower;
     public IntegratingGyroscope gyro;
     public ModernRoboticsI2cGyro modernRoboticsI2cGyro;
@@ -50,6 +53,11 @@ public class TreadDriveRobot
     {
         leftDrive = hwMap.get(DcMotor.class, "leftDrive");
         rightDrive = hwMap.get(DcMotor.class, "rightDrive");
+
+        shoulderArm = hwMap.get (DcMotor.class, "shoulderArm");
+        racknPinion = hwMap.get (DcMotor.class, "racknPinion");
+        claw = hwMap.get (Servo.class, "claw");
+
         lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
         modernRoboticsI2cGyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyroSensor");
         gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;

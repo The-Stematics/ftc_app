@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 import java.util.concurrent.TimeUnit;
 
-@TeleOp(name="BlinkinExample")
+@TeleOp(name="BlinkinLEDTest", group = "TestMode")
 //@Disabled
 
 public class RevBlinkinLedDriverTest extends OpMode {

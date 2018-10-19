@@ -60,7 +60,7 @@ public class TreadDriveAutonomous extends LinearOpMode
             telemetry.addData("Line Follower Red Color", robot.lineFollower.red());
             telemetry.addData("Line Follower Green Color", robot.lineFollower.green());
             telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());
-            
+
             telemetry.addLine()
                     .addData("dx", formatRate(robot.rates.xRotationRate))
                     .addData("dy", formatRate(robot.rates.yRotationRate))
