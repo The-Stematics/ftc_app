@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
@@ -28,9 +29,9 @@ public class TreadDriveRobot
     public Servo claw;
     public float drivePower;
 
-    public ColorSensor lineFollower;
+    /*public ColorSensor lineFollower;
     public IntegratingGyroscope gyro;
-    public ModernRoboticsI2cGyro modernRoboticsI2cGyro;
+    public ModernRoboticsI2cGyro modernRoboticsI2cGyro;*/
 //HAHAHA jake was here YEET
     private MediaPlayer mediaPlayer = null;
 
@@ -58,26 +59,28 @@ public class TreadDriveRobot
         racknPinion = hwMap.get (DcMotor.class, "racknPinion");
         claw = hwMap.get (Servo.class, "claw");
 
-        lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
-        modernRoboticsI2cGyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyroSensor");
-        gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
+        //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
+        //modernRoboticsI2cGyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyroSensor");
+        //gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
 
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
+        shoulderArm.setDirection(DcMotor.Direction.REVERSE);
 
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        lineFollower.enableLed(true);
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        modernRoboticsI2cGyro.calibrate();
-        modernRoboticsI2cGyro.resetZAxisIntegrator();
+        //lineFollower.enableLed(true);
+
+        //modernRoboticsI2cGyro.calibrate();
+        //modernRoboticsI2cGyro.resetZAxisIntegrator();
     }
 
     public void safetyStop() //Safely stops all motors and other running components.
     {
         leftDrive.setPower(0);
         rightDrive.setPower(0);
-        lineFollower.enableLed(false);
+        //lineFollower.enableLed(false);
         stopMusic();
     }
 
@@ -135,7 +138,7 @@ public class TreadDriveRobot
         rightDrive.setPower(-drivePower);
     }
 
-    public void senseGyro()
+    /*public void senseGyro()
     {
         rawX = modernRoboticsI2cGyro.rawX();
         rawY = modernRoboticsI2cGyro.rawY();
@@ -148,5 +151,5 @@ public class TreadDriveRobot
 
         zAxisOffset = modernRoboticsI2cGyro.getZAxisOffset();
         zAxisScalingCoefficient = modernRoboticsI2cGyro.getZAxisScalingCoefficient();
-    }
+    }*/
 }

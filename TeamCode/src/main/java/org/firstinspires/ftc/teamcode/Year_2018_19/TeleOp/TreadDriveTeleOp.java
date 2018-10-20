@@ -37,8 +37,8 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
         if (gamepad1.right_stick_button) {
             robot.drivePower = 1;
         }
-        robot.leftDrive.setPower(-gamepad1.left_stick_y * robot.drivePower);
-        robot.leftDrive.setPower(-gamepad1.right_stick_y * robot.drivePower);
+        robot.leftDrive.setPower(-gamepad1.left_stick_y /* robot.drivePower*/);
+        robot.rightDrive.setPower(-gamepad1.right_stick_y /* robot.drivePower*/);
 
 
 
@@ -48,7 +48,7 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
         if (gamepad1.x) { //If Gamepad 1 X Button Pressed
             robot.playMusic(this.hardwareMap.appContext); //Plays music
         }
-        else if (gamepad1.y) { //If Gamepad 1 Y Button Pressed
+        if (gamepad1.y) { //If Gamepad 1 Y Button Pressed
             robot.stopMusic(); //Stops music.
         }
 
@@ -69,11 +69,19 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
         {
             robot.racknPinion.setPower(-0.5);
         }
+        else
+        {
+            robot.racknPinion.setPower(0);
+        }
+
         if (gamepad1.b)
         {
             robot.racknPinion.setPower(0.5);
         }
-
+        else
+        {
+            robot.racknPinion.setPower(0);
+        }
 
 
 
@@ -83,12 +91,12 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
 
         if (gamepad1.left_bumper)
         {
-            robot.claw.setPosition(1); //Go down
+            robot.claw.setPosition(0); //Go down
         }
 
         if (gamepad1.right_bumper)
         {
-            robot.claw.setPosition(0.25); //Go up
+            robot.claw.setPosition(0.3); //Go up
         }
 
 

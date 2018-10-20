@@ -52,14 +52,14 @@ public class TreadDriveAutonomous extends LinearOpMode
 
         while (opModeIsActive())
         {
-            robot.senseGyro();
+            //robot.senseGyro();
 
             telemetry.addData("Left Drive", robot.leftDrive.getPower());
             telemetry.addData("Right Drive", robot.rightDrive.getPower());
 
-            telemetry.addData("Line Follower Red Color", robot.lineFollower.red());
+            /*telemetry.addData("Line Follower Red Color", robot.lineFollower.red());
             telemetry.addData("Line Follower Green Color", robot.lineFollower.green());
-            telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());
+            telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());*/
 
             telemetry.addLine()
                     .addData("dx", formatRate(robot.rates.xRotationRate))
