@@ -67,7 +67,7 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
 
         if (gamepad1.a)
         {
-            robot.racknPinion.setPower(-0.5);
+            robot.racknPinion.setPower(-1);
         }
         else
         {
@@ -76,7 +76,7 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
 
         if (gamepad1.b)
         {
-            robot.racknPinion.setPower(0.5);
+            robot.racknPinion.setPower(1);
         }
         else
         {
