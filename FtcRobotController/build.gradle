@@ -5,12 +5,12 @@ apply plugin: 'com.android.library'
 
 android {
 
+    compileSdkVersion 26
+
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 19
+        targetSdkVersion 26
     }
-
-    compileSdkVersion 23
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
