@@ -15,17 +15,13 @@ public class TreadDriveAutonomous extends LinearOpMode
     {
         robot.init(hardwareMap);
         robot.playR2D2Sound(this.hardwareMap.appContext);
-        robot.claw.setPosition(0.3);
+        robot.claw.setPosition(1);
 
-        while (opModeIsActive())
-        {
-            if (gamepad1.b && gamepad1.left_stick_button) {robot.alliance = "Red Left Alliance";} //Red Left Alliance
-            if (gamepad1.b && gamepad1.right_stick_button) {robot.alliance = "Red Right Alliance";} //Red Right Alliance
-            if (gamepad1.x && gamepad1.left_stick_button) {robot.alliance = "Blue Left Alliance";} //Blue Left Alliance
-            if (gamepad1.x && gamepad1.right_stick_button) {robot.alliance = "Blue Right Alliance";} //Blue Right Alliance
-        }
+        if (gamepad1.x) {robot.state = 1;} //Left Alliance
+        if (gamepad1.b) {robot.state = 2;} //Right Alliance
 
         telemetry.addData("Status", "Robot has initialied!");
+        telemetry.addData("State", robot.state);
         telemetry.update();
 
         waitForStart();
@@ -33,21 +29,17 @@ public class TreadDriveAutonomous extends LinearOpMode
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
 
-        if (robot.alliance.equals("Red Left Alliance"))
+        if (robot.state == 1)
         {
-            RedLeftAlliance();
+            LeftAlliance();
         }
-        else if (robot.alliance.equals("Red Right Alliance"))
+        else if (robot.state == 2)
         {
-            RedRightAlliance();
+            RightAlliance();
         }
-        else if (robot.alliance.equals("Blue Left Alliance"))
+        else
         {
-            BlueLeftAlliance();
-        }
-        else if (robot.alliance.equals("Blue Right Alliance"))
-        {
-            BlueRightAlliance();
+            LeftAlliance();
         }
 
         sleep (1000);
@@ -60,6 +52,7 @@ public class TreadDriveAutonomous extends LinearOpMode
 
             telemetry.addData("Left Drive", robot.leftDrive.getPower());
             telemetry.addData("Right Drive", robot.rightDrive.getPower());
+            telemetry.addData("State", robot.state);
 
             /*telemetry.addData("Line Follower Red Color", robot.lineFollower.red());
             telemetry.addData("Line Follower Green Color", robot.lineFollower.green());
@@ -76,8 +69,8 @@ public class TreadDriveAutonomous extends LinearOpMode
                     .addData("rawX", formatRaw(robot.rawX))
                     .addData("rawY", formatRaw(robot.rawY))
                     .addData("rawZ", formatRaw(robot.rawZ));
-            telemetry.addLine().addData("z offset", robot.zAxisOffset).addData("z coeff", robot.zAxisScalingCoefficient);*/
-            telemetry.update();
+            telemetry.addLine().addData("z offset", robot.zAxisOffset).addData("z coeff", robot.zAxisScalingCoefficient);
+            telemetry.update();*/
 
             telemetry.update();
         }
@@ -85,28 +78,17 @@ public class TreadDriveAutonomous extends LinearOpMode
         robot.safetyStop();
     }
 
-    private void BlueLeftAlliance() throws InterruptedException
+    private void LeftAlliance() throws InterruptedException
     {
         robot.driveForward(1.0f, 3000);
     }
 
-    private void BlueRightAlliance() throws InterruptedException
+    private void RightAlliance() throws InterruptedException
     {
         robot.driveForward(0.75f, 2500);
-        robot.rotateRight(0.5f, 3000);
-        robot.driveForward(1, 4500);
-    }
-
-    private void RedLeftAlliance() throws InterruptedException
-    {
-        robot.driveForward(1.0f, 3000);
-    }
-
-    private void RedRightAlliance() throws InterruptedException
-    {
-        robot.driveForward(0.75f, 2500);
-        robot.rotateRight(0.5f, 3000);
-        robot.driveForward(1, 4500);
+        robot.claw.setPosition(0);
+        robot.rotateRight(0.5f, 2000);
+        robot.driveForward(1, 5000);
     }
 
     private String formatRaw(int rawValue) {

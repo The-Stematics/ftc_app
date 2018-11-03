@@ -24,6 +24,7 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
     {
         robot.playBB8Sound(this.hardwareMap.appContext); //Plays bb8 sound
         robot.drivePower = 1;
+        robot.claw.setPosition(robot.clawPos);
         robot.claw.setPosition(0.3);
         telemetry.addData("Status", "Robot has started!"); //Telemetry start message
         telemetry.update(); //Updates telemetry messages
@@ -91,16 +92,17 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
 
         /*                         Claw                              */
 
-        if (gamepad1.left_bumper)
+        robot.claw.setPosition(robot.clawPos);
+
+        if (gamepad1.left_bumper && robot.clawPos > 0)
         {
-            robot.claw.setPosition(0); //Go down
+            robot.clawPos -= 0.01;
         }
 
-        if (gamepad1.right_bumper)
+        if (gamepad1.right_bumper && robot.clawPos < 1)
         {
-            robot.claw.setPosition(0.3); //Go up
+            robot.clawPos += 0.01;
         }
-
 
 
 
@@ -108,6 +110,8 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
 
         telemetry.addData("Left Drive", robot.leftDrive.getPower()); //Left Drive Telemetry Message
         telemetry.addData("Right Drive", robot.rightDrive.getPower()); //Right Drive Telemetry Message
+        telemetry.addData("Servo Claw Pos Int", robot.clawPos);
+        telemetry.addData("Actual Claw", robot.claw.getPosition());
 
         telemetry.update(); //Updates telemetry messages
     }
@@ -119,3 +123,17 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
         telemetry.update(); //Updates telemetry messages
     }
 }
+
+/*
+Teja is awarded a prize for being smart and everybody was happy.
+The end
+Nora lives in a mansion and she rules over everybody and nobody cared.
+The end
+Jake lives in a treehouse with Fin from 'Adventure Time'
+The end
+Grace gives grace to everybody and she ruled over Nora and she became goddess she also became a constelation everybody loved her.
+The end
+Aaron lives with a youtuber named Aphmau [her real name is Jess] and she has 4 million subs everybody shipped them.
+The end
+
+*/

@@ -34,13 +34,15 @@ public class TreadDriveRobot
     /*public ColorSensor lineFollower;
     public IntegratingGyroscope gyro;
     public ModernRoboticsI2cGyro modernRoboticsI2cGyro;*/
-//HAHAHA jake was here YEET
+
     private MediaPlayer mediaPlayer = null;
 
     //The hardware data
     public String alliance = null;
+    public int state = 0;
+    public double clawPos = 1.00;
 
-    public int rawX;
+    /*public int rawX;
     public int rawY;
     public int rawZ;
     public int heading;
@@ -48,7 +50,7 @@ public class TreadDriveRobot
     public AngularVelocity rates;
     public float zAngle;
     public int zAxisOffset;
-    public int zAxisScalingCoefficient;
+    public int zAxisScalingCoefficient;*/
 
 
     //Set up commands here.
