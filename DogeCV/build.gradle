@@ -25,4 +25,5 @@ repositories {
     }
 }
 dependencies {
+    api project(":openCVLibrary3")
 }
