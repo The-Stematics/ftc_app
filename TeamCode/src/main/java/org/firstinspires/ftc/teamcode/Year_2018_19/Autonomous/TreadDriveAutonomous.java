@@ -15,11 +15,15 @@ public class TreadDriveAutonomous extends LinearOpMode
     {
         robot.init(hardwareMap);
         robot.playR2D2Sound(this.hardwareMap.appContext);
+        robot.claw.setPosition(0.3);
 
-        if (gamepad1.b && gamepad1.left_stick_button) {robot.alliance = "Red Left Alliance";} //Red Left Alliance
-        else if (gamepad1.b && gamepad1.right_stick_button) {robot.alliance = "Red Right Alliance";} //Red Right Alliance
-        else if (gamepad1.x && gamepad1.left_stick_button) {robot.alliance = "Blue Left Alliance";} //Blue Left Alliance
-        else if (gamepad1.x && gamepad1.right_stick_button) {robot.alliance = "Blue Right Alliance";} //Blue Right Alliance
+        while (opModeIsActive())
+        {
+            if (gamepad1.b && gamepad1.left_stick_button) {robot.alliance = "Red Left Alliance";} //Red Left Alliance
+            if (gamepad1.b && gamepad1.right_stick_button) {robot.alliance = "Red Right Alliance";} //Red Right Alliance
+            if (gamepad1.x && gamepad1.left_stick_button) {robot.alliance = "Blue Left Alliance";} //Blue Left Alliance
+            if (gamepad1.x && gamepad1.right_stick_button) {robot.alliance = "Blue Right Alliance";} //Blue Right Alliance
+        }
 
         telemetry.addData("Status", "Robot has initialied!");
         telemetry.update();
@@ -31,19 +35,19 @@ public class TreadDriveAutonomous extends LinearOpMode
 
         if (robot.alliance.equals("Red Left Alliance"))
         {
-            BlueLeftAlliance();
+            RedLeftAlliance();
         }
         else if (robot.alliance.equals("Red Right Alliance"))
         {
-            BlueRightAlliance();
+            RedRightAlliance();
         }
         else if (robot.alliance.equals("Blue Left Alliance"))
         {
-            RedLeftAlliance();
+            BlueLeftAlliance();
         }
         else if (robot.alliance.equals("Blue Right Alliance"))
         {
-            RedRightAlliance();
+            BlueRightAlliance();
         }
 
         sleep (1000);
@@ -61,7 +65,7 @@ public class TreadDriveAutonomous extends LinearOpMode
             telemetry.addData("Line Follower Green Color", robot.lineFollower.green());
             telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());*/
 
-            telemetry.addLine()
+            /*telemetry.addLine()
                     .addData("dx", formatRate(robot.rates.xRotationRate))
                     .addData("dy", formatRate(robot.rates.yRotationRate))
                     .addData("dz", "%s deg/s", formatRate(robot.rates.zRotationRate));
@@ -72,7 +76,7 @@ public class TreadDriveAutonomous extends LinearOpMode
                     .addData("rawX", formatRaw(robot.rawX))
                     .addData("rawY", formatRaw(robot.rawY))
                     .addData("rawZ", formatRaw(robot.rawZ));
-            telemetry.addLine().addData("z offset", robot.zAxisOffset).addData("z coeff", robot.zAxisScalingCoefficient);
+            telemetry.addLine().addData("z offset", robot.zAxisOffset).addData("z coeff", robot.zAxisScalingCoefficient);*/
             telemetry.update();
 
             telemetry.update();
@@ -83,14 +87,14 @@ public class TreadDriveAutonomous extends LinearOpMode
 
     private void BlueLeftAlliance() throws InterruptedException
     {
-        robot.driveForward(1.0f, 2000);
+        robot.driveForward(1.0f, 3000);
     }
 
     private void BlueRightAlliance() throws InterruptedException
     {
-        robot.driveForward(0.75f, 1000);
-        robot.rotateRight(0.5f, 500);
-        robot.driveForward(1, 4000);
+        robot.driveForward(0.75f, 2500);
+        robot.rotateRight(0.5f, 3000);
+        robot.driveForward(1, 4500);
     }
 
     private void RedLeftAlliance() throws InterruptedException
@@ -100,9 +104,9 @@ public class TreadDriveAutonomous extends LinearOpMode
 
     private void RedRightAlliance() throws InterruptedException
     {
-        robot.driveForward(0.75f, 1000);
-        robot.rotateRight(0.5f, 500);
-        robot.driveForward(1, 4000);
+        robot.driveForward(0.75f, 2500);
+        robot.rotateRight(0.5f, 3000);
+        robot.driveForward(1, 4500);
     }
 
     private String formatRaw(int rawValue) {

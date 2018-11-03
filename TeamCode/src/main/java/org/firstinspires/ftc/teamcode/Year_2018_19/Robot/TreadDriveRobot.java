@@ -19,6 +19,8 @@ import org.firstinspires.ftc.teamcode.R;
 
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
+
 public class TreadDriveRobot
 {
     //The hardware components.
@@ -81,7 +83,7 @@ public class TreadDriveRobot
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         //lineFollower.enableLed(false);
-        stopMusic();
+        //stopMusic();
     }
 
     public void playMusic(Context context) {
@@ -112,7 +114,7 @@ public class TreadDriveRobot
     {
         leftDrive.setPower(drivePower);
         rightDrive.setPower(drivePower);
-        wait(timeInMilliseconds);
+        sleep(timeInMilliseconds);
         leftDrive.setPower(0);
         rightDrive.setPower(0);
     }
@@ -121,7 +123,7 @@ public class TreadDriveRobot
     {
         leftDrive.setPower(-drivePower);
         rightDrive.setPower(-drivePower);
-        wait(timeInMilliseconds);
+        sleep(timeInMilliseconds);
         leftDrive.setPower(0);
         rightDrive.setPower(0);
     }
@@ -130,12 +132,18 @@ public class TreadDriveRobot
     {
         leftDrive.setPower(-drivePower);
         rightDrive.setPower(drivePower);
+        sleep(timeInMilliseconds);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
     }
 
     public void rotateRight(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
         leftDrive.setPower(drivePower);
         rightDrive.setPower(-drivePower);
+        sleep(timeInMilliseconds);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
     }
 
     /*public void senseGyro()

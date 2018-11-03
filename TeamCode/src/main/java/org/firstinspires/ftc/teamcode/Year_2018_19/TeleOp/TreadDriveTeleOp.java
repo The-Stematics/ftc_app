@@ -15,14 +15,16 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
     public void init() //Method that runs when robot initiates.
     {
         robot.init(hardwareMap); //Initiates hardware map method from Tread Drive Robot program
-        robot.playR2D2Sound(this.hardwareMap.appContext); //Plays R2D2 Sound
+        robot.playR2D2Sound(this.hardwareMap.appContext); //Plays r2d2 Sound
         telemetry.addData("Status", "Robot has initiated!"); //Telemetry initiate message
         telemetry.update(); //Updates telemetry messages
     }
 
     public void start() //Method that runs when robot starts
     {
-        robot.playBB8Sound(this.hardwareMap.appContext); //Plays BB8 sound
+        robot.playBB8Sound(this.hardwareMap.appContext); //Plays bb8 sound
+        robot.drivePower = 1;
+        robot.claw.setPosition(0.3);
         telemetry.addData("Status", "Robot has started!"); //Telemetry start message
         telemetry.update(); //Updates telemetry messages
     }
@@ -30,15 +32,15 @@ public class TreadDriveTeleOp extends OpMode //OpMode class
     public void loop()
     {
         /*                         Drive Motors                              */
-        if (gamepad1.left_stick_button)
+        if (gamepad1.dpad_down)
         {
             robot.drivePower = 0.5f;
         }
-        if (gamepad1.right_stick_button) {
+        if (gamepad1.dpad_up) {
             robot.drivePower = 1;
         }
-        robot.leftDrive.setPower(-gamepad1.left_stick_y /* robot.drivePower*/);
-        robot.rightDrive.setPower(-gamepad1.right_stick_y /* robot.drivePower*/);
+        robot.leftDrive.setPower(-gamepad1.left_stick_y * robot.drivePower);
+        robot.rightDrive.setPower(-gamepad1.right_stick_y * robot.drivePower);
 
 
 
