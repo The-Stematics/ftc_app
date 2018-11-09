@@ -33,29 +33,29 @@ public class MecanumDriveTeleOp extends OpMode
     //Called repeatedly after robot starts.
     public void loop()
     {
-        /*if (gamepad1.left_bumper) //If left bumper pressed
+        if (gamepad1.left_bumper) //If left bumper pressed
         {
             //Power low
             robot.drivePower = 0.5;
         }
-        else if (gamepad1.right_bumper) //If right bumper pressed
+        if (gamepad1.right_bumper) //If right bumper pressed
         {
             //Power high
             robot.drivePower = 1;
-        }*/
+        }
 
-        if (gamepad1.left_stick_y <= -0.1) //If left stick forward
+        if (gamepad1.left_stick_y <= -0.5) //If left stick forward
         {
-            robot.drivePower = gamepad1.left_stick_y;
+            //robot.drivePower = gamepad1.left_stick_y;
             //Move forward
             robot.frontLeftDrive.setPower(robot.drivePower);
             robot.frontRightDrive.setPower(robot.drivePower);
             robot.backLeftDrive.setPower(robot.drivePower);
             robot.backRightDrive.setPower(robot.drivePower);
         }
-        if (gamepad1.left_stick_y >= 0.1) //If left stick backward
+        if (gamepad1.left_stick_y >= 0.5) //If left stick backward
         {
-            robot.drivePower = gamepad1.left_stick_y;
+            //robot.drivePower = gamepad1.left_stick_y;
             //Move backward
             robot.frontLeftDrive.setPower(-robot.drivePower);
             robot.frontRightDrive.setPower(-robot.drivePower);
@@ -63,18 +63,18 @@ public class MecanumDriveTeleOp extends OpMode
             robot.backRightDrive.setPower(-robot.drivePower);
         }
 
-        if (gamepad1.left_stick_x <= -0.1) //If left stick left
+        if (gamepad1.left_stick_x <= -0.5) //If left stick left
         {
-            robot.drivePower = gamepad1.left_stick_x;
+            //robot.drivePower = gamepad1.left_stick_x;
                     //Strafe left
             robot.frontLeftDrive.setPower(robot.drivePower);
             robot.frontRightDrive.setPower(-robot.drivePower);
             robot.backLeftDrive.setPower(-robot.drivePower);
             robot.backRightDrive.setPower(robot.drivePower);
         }
-        else if (gamepad1.left_stick_x >= 0.1) //If left stick right
+        if (gamepad1.left_stick_x >= 0.5) //If left stick right
         {
-            robot.drivePower = gamepad1.left_stick_x;
+            //robot.drivePower = gamepad1.left_stick_x;
             //Strafe right
             robot.frontLeftDrive.setPower(-robot.drivePower);
             robot.frontRightDrive.setPower(robot.drivePower);
@@ -82,24 +82,29 @@ public class MecanumDriveTeleOp extends OpMode
             robot.backRightDrive.setPower(-robot.drivePower);
         }
 
-        if(gamepad1.right_stick_x <= -0.1) //If right stick left
+        if(gamepad1.right_stick_x <= -0.5) //If right stick left
         {
-            robot.drivePower = gamepad1.right_stick_x;
+            //robot.drivePower = gamepad1.right_stick_x;
             //Rotate left
-            robot.frontLeftDrive.setPower(-robot.drivePower);
-            robot.frontRightDrive.setPower(robot.drivePower);
-            robot.backLeftDrive.setPower(-robot.drivePower);
-            robot.backRightDrive.setPower(robot.drivePower);
-        }
-        else if (gamepad1.right_stick_x >= 0.1) //If right stick right
-        {
-            robot.drivePower = gamepad1.right_stick_x;
-            //Rotate right
             robot.frontLeftDrive.setPower(robot.drivePower);
             robot.frontRightDrive.setPower(-robot.drivePower);
             robot.backLeftDrive.setPower(robot.drivePower);
             robot.backRightDrive.setPower(-robot.drivePower);
         }
+        if (gamepad1.right_stick_x >= 0.5) //If right stick right
+        {
+            //robot.drivePower = gamepad1.right_stick_x;
+            //Rotate right
+            robot.frontLeftDrive.setPower(-robot.drivePower);
+            robot.frontRightDrive.setPower(robot.drivePower);
+            robot.backLeftDrive.setPower(-robot.drivePower);
+            robot.backRightDrive.setPower(robot.drivePower);
+        }
+
+        robot.frontLeftDrive.setPower(0);
+        robot.frontRightDrive.setPower(0);
+        robot.backLeftDrive.setPower(0);
+        robot.backRightDrive.setPower(0);
 
         if (this.gamepad1.x) {
             robot.playMusic(this.hardwareMap.appContext);
@@ -113,13 +118,13 @@ public class MecanumDriveTeleOp extends OpMode
         telemetry.addData("Back Left Drive", robot.backLeftDrive.getPower());
         telemetry.addData("Back Right Drive", robot.backRightDrive.getPower());
 
-        telemetry.addData("Gyro Sensor X", robot.gyroSensor.rawX());
+        /*telemetry.addData("Gyro Sensor X", robot.gyroSensor.rawX());
         telemetry.addData("Gyro Sensor Y", robot.gyroSensor.rawY());
         telemetry.addData("Gyro Sensor Z", robot.gyroSensor.rawZ());
 
         telemetry.addData("Line Follower Red Color", robot.lineFollower.red());
         telemetry.addData("Line Follower Green Color", robot.lineFollower.green());
-        telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());
+        telemetry.addData("Line Follower Blue Color", robot.lineFollower.blue());*/
 
         telemetry.update();
     }

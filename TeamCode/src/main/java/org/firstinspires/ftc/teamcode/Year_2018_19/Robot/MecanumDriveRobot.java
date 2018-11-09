@@ -23,8 +23,8 @@ public class MecanumDriveRobot
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
 
-    public GyroSensor gyroSensor;
-    public ColorSensor lineFollower;
+    //public GyroSensor gyroSensor;
+    //public ColorSensor lineFollower;
 
     private MediaPlayer mediaPlayer = null;
     public int state = 0;
@@ -40,19 +40,19 @@ public class MecanumDriveRobot
         frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
         backLeftDrive = hwMap.get(DcMotor.class, "backLeftDrive");
         backRightDrive = hwMap.get(DcMotor.class, "backRightDrive");
-        gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
-        lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
+        //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
+        //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
 
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
-        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
 
-        frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        /*frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         gyroSensor.calibrate();
-        lineFollower.enableLed(true);
+        lineFollower.enableLed(true);*/
     }
 
     public void safetyStop() //Safely stops all motors and other running components.
@@ -61,7 +61,7 @@ public class MecanumDriveRobot
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
-        lineFollower.enableLed(false);
+        //lineFollower.enableLed(false);
         stopMusic();
     }
 
@@ -130,10 +130,10 @@ public class MecanumDriveRobot
 
     public void strafeLeft (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-    frontLeftDrive.setPower(-drivePower);
-    frontRightDrive.setPower(drivePower);
-    backLeftDrive.setPower(drivePower);
-    backRightDrive.setPower(-drivePower);
+        frontLeftDrive.setPower(drivePower);
+        frontRightDrive.setPower(-drivePower);
+        backLeftDrive.setPower(drivePower);
+        backRightDrive.setPower(-drivePower);
     sleep(timeInMilliseconds);
     frontLeftDrive.setPower(0);
     backLeftDrive.setPower(0);
@@ -143,10 +143,10 @@ public class MecanumDriveRobot
 
     public void rotateRight (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-    frontLeftDrive.setPower(drivePower);
-    backLeftDrive.setPower(drivePower);
-    frontRightDrive.setPower(-drivePower);
-    backRightDrive.setPower(-drivePower);
+        frontLeftDrive.setPower(-drivePower);
+        frontRightDrive.setPower(drivePower);
+        backLeftDrive.setPower(-drivePower);
+        backRightDrive.setPower(drivePower);
     sleep(timeInMilliseconds);
     frontLeftDrive.setPower(0);
     backLeftDrive.setPower(0);
