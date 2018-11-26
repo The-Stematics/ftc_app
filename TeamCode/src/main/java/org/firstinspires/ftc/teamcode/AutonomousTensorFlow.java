@@ -59,7 +59,7 @@ public class AutonomousTensorFlow extends LinearOpMode {
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
-    String phonePos = "Right"; //Is the phone on the Left or Right side?
+    String phonePos = "Right"; //Is the phone on the Left or Right side? HI DADDY
 
     @Override
     public void runOpMode() {
@@ -119,6 +119,7 @@ public class AutonomousTensorFlow extends LinearOpMode {
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
                             int silverMineral2X = -1;
+
                             for (Recognition recognition : updatedRecognitions) {
                                 if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                                     goldMineralX = (int) recognition.getLeft();
@@ -156,7 +157,7 @@ public class AutonomousTensorFlow extends LinearOpMode {
                                 {
                                     telemetry.addData("Gold Mineral Position", "Right");
                                 }
-                                else
+                                else if (silverMineral1X > silverMineral2X || silverMineral2X > silverMineral1X)
                                 {
                                     telemetry.addData("Gold Mineral Position", "Left");
                                 }
