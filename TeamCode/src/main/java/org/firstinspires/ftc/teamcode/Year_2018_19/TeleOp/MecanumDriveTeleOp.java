@@ -93,11 +93,11 @@ public class MecanumDriveTeleOp extends OpMode
 
         if (gamepad1.y)
         {
-            robot.hanger.setPower(0.5);
+            robot.hanger.setPower(1);
         }
         if(gamepad1.a)
         {
-            robot.hanger.setPower(-0.5);
+            robot.hanger.setPower(-1);
         }
         robot.hanger.setPower(0);
 
