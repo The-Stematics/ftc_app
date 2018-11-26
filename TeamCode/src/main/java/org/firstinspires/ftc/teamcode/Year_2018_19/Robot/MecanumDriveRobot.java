@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Year_2018_19.Robot;
 import android.content.Context;
 import android.media.MediaPlayer;
 
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -17,11 +18,19 @@ import static java.lang.Thread.sleep;
 
 public class MecanumDriveRobot
 {
-    //The hardware components.
+    //The drivetrain
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
+
+    //Box Arm
+    public DcMotor boxSlammer;
+    public DcMotor boxStorage;
+
+    //Hanger
+    public DcMotor hanger;
+
 
     //public GyroSensor gyroSensor;
     //public ColorSensor lineFollower;
@@ -30,8 +39,6 @@ public class MecanumDriveRobot
     public int state = 0;
 
     //The hardware data.
-    public double drivePower = 0.5;
-    public String alliance = null;
 
     //Set up commands here.
     public void init(HardwareMap hwMap)    //Hardware and components initiates.
@@ -40,6 +47,11 @@ public class MecanumDriveRobot
         frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
         backLeftDrive = hwMap.get(DcMotor.class, "backLeftDrive");
         backRightDrive = hwMap.get(DcMotor.class, "backRightDrive");
+
+        boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
+        boxStorage = hwMap.get(DcMotor.class, "boxStorage");
+        hanger = hwMap.get(DcMotor.class, "hanger");
+        hanger.setDirection(DcMotor.Direction.REVERSE);
         //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
         //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
 
@@ -91,41 +103,28 @@ public class MecanumDriveRobot
 
     public void driveForward (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-     frontLeftDrive.setPower(drivePower);
-     backLeftDrive.setPower(drivePower);
-     frontRightDrive.setPower(drivePower);
-     backRightDrive.setPower(drivePower);
-     sleep(timeInMilliseconds);
-     frontLeftDrive.setPower(0);
-     backLeftDrive.setPower(0);
-     frontRightDrive.setPower(0);
-     backRightDrive.setPower(0);
+        frontLeftDrive.setPower(drivePower);
+        frontRightDrive.setPower(drivePower);
+        backLeftDrive.setPower(drivePower);
+        backRightDrive.setPower(drivePower);
+        sleep(timeInMilliseconds);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
     }
 
     public void driveBackward (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-     frontLeftDrive.setPower(-drivePower);
-     backLeftDrive.setPower(-drivePower);
-     frontRightDrive.setPower(-drivePower);
-     backRightDrive.setPower(-drivePower);
-     sleep(timeInMilliseconds);
-     frontLeftDrive.setPower(0);
-     backLeftDrive.setPower(0);
-     frontRightDrive.setPower(0);
-     backRightDrive.setPower(0);
-    }
-
-    public void strafeRight (float drivePower, int timeInMilliseconds) throws InterruptedException
-    {
-     frontLeftDrive.setPower(drivePower);
-     backLeftDrive.setPower(-drivePower);
-     frontRightDrive.setPower(-drivePower);
-     backRightDrive.setPower(drivePower);
-     sleep(timeInMilliseconds);
-     frontLeftDrive.setPower(0);
-     backLeftDrive.setPower(0);
-     frontRightDrive.setPower(0);
-     backRightDrive.setPower(0);
+        frontLeftDrive.setPower(-drivePower);
+        frontRightDrive.setPower(-drivePower);
+        backLeftDrive.setPower(-drivePower);
+        backRightDrive.setPower(-drivePower);
+        sleep(timeInMilliseconds);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
     }
 
     public void strafeLeft (float drivePower, int timeInMilliseconds) throws InterruptedException
@@ -134,36 +133,65 @@ public class MecanumDriveRobot
         frontRightDrive.setPower(-drivePower);
         backLeftDrive.setPower(drivePower);
         backRightDrive.setPower(-drivePower);
-    sleep(timeInMilliseconds);
-    frontLeftDrive.setPower(0);
-    backLeftDrive.setPower(0);
-    frontRightDrive.setPower(0);
-    backRightDrive.setPower(0);
+        sleep(timeInMilliseconds);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
     }
 
-    public void rotateRight (float drivePower, int timeInMilliseconds) throws InterruptedException
+    public void strafeRight (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-        frontLeftDrive.setPower(-drivePower);
-        frontRightDrive.setPower(drivePower);
+        frontLeftDrive.setPower(drivePower);
+        frontRightDrive.setPower(-drivePower);
         backLeftDrive.setPower(-drivePower);
         backRightDrive.setPower(drivePower);
-    sleep(timeInMilliseconds);
-    frontLeftDrive.setPower(0);
-    backLeftDrive.setPower(0);
-    frontRightDrive.setPower(0);
-    backRightDrive.setPower(0);
+        sleep(timeInMilliseconds);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
     }
 
     public void rotateLeft (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
         frontLeftDrive.setPower(-drivePower);
-        backLeftDrive.setPower(-drivePower);
         frontRightDrive.setPower(drivePower);
+        backLeftDrive.setPower(-drivePower);
         backRightDrive.setPower(drivePower);
         sleep(timeInMilliseconds);
         frontLeftDrive.setPower(0);
-        backLeftDrive.setPower(0);
         frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
+    }
+
+    public void rotateRight (float drivePower, int timeInMilliseconds) throws InterruptedException
+    {
+        frontLeftDrive.setPower(drivePower);
+        frontRightDrive.setPower(-drivePower);
+        backLeftDrive.setPower(drivePower);
+        backRightDrive.setPower(-drivePower);
+        sleep(timeInMilliseconds);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+    }
+
+    public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
+    {
+        hanger.setPower(-drivePower);
+        sleep(timeInMilliseconds);
+        hanger.setPower(0);
+    }
+
+    public void dropMarker(float drivePower, int timeInMilliseconds) throws InterruptedException
+    {
+        boxSlammer.setPower(drivePower);
+        sleep(timeInMilliseconds);
+        boxSlammer.setPower(-drivePower);
+        sleep(timeInMilliseconds);
+        boxSlammer.setPower(0);
     }
 }

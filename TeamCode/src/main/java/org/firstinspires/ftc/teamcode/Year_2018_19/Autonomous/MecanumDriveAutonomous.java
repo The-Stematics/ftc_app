@@ -88,8 +88,10 @@ public class MecanumDriveAutonomous extends LinearOpMode
     private void RightAlliance() throws InterruptedException
     {
         robot.driveForward(0.5f, 2500);
-        robot.rotateRight(0.5f, 2500);
-        robot.driveForward(0.5f, 4000);
+        robot.driveBackward(0.5f, 500);
+        robot.dropMarker(0.25f, 1000);
+        robot.rotateRight(0.5f, 1800);
+        robot.driveForward(1f, 4000);
     }
 
     private String formatRaw(int rawValue) {

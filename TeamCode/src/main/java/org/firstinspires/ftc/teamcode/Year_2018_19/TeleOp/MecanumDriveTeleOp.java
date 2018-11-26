@@ -33,85 +33,80 @@ public class MecanumDriveTeleOp extends OpMode
     //Called repeatedly after robot starts.
     public void loop()
     {
-        if (gamepad1.left_bumper) //If left bumper pressed
-        {
-            //Power low
-            robot.drivePower = 0.5;
-        }
-        if (gamepad1.right_bumper) //If right bumper pressed
-        {
-            //Power high
-            robot.drivePower = 1;
-        }
+        double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y); //Added -
+        double robotAngle = Math.atan2(-gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4; //Added -
+        double rightX = gamepad1.right_stick_x;
+        final double v1 = r * Math.cos(robotAngle) + rightX;
+        final double v2 = r * Math.sin(robotAngle) - rightX;
+        final double v3 = r * Math.sin(robotAngle) + rightX;
+        final double v4 = r * Math.cos(robotAngle) - rightX;
 
-        if (gamepad1.left_stick_y <= -0.5) //If left stick forward
-        {
-            //robot.drivePower = gamepad1.left_stick_y;
-            //Move forward
-            robot.frontLeftDrive.setPower(robot.drivePower);
-            robot.frontRightDrive.setPower(robot.drivePower);
-            robot.backLeftDrive.setPower(robot.drivePower);
-            robot.backRightDrive.setPower(robot.drivePower);
-        }
-        if (gamepad1.left_stick_y >= 0.5) //If left stick backward
-        {
-            //robot.drivePower = gamepad1.left_stick_y;
-            //Move backward
-            robot.frontLeftDrive.setPower(-robot.drivePower);
-            robot.frontRightDrive.setPower(-robot.drivePower);
-            robot.backLeftDrive.setPower(-robot.drivePower);
-            robot.backRightDrive.setPower(-robot.drivePower);
-        }
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
-        if (gamepad1.left_stick_x <= -0.5) //If left stick left
-        {
-            //robot.drivePower = gamepad1.left_stick_x;
-                    //Strafe left
-            robot.frontLeftDrive.setPower(robot.drivePower);
-            robot.frontRightDrive.setPower(-robot.drivePower);
-            robot.backLeftDrive.setPower(-robot.drivePower);
-            robot.backRightDrive.setPower(robot.drivePower);
+        /*if (gamepad1.left_stick_x > -0.1 && gamepad1.right_stick_x < 0.1) { // Drive forward given the user ain't trying to strafe
+            robot.frontLeftDrive.setPower(-gamepad1.left_stick_y);
+            robot.frontRightDrive.setPower(-gamepad1.right_stick_y);
+            robot.backLeftDrive.setPower(-gamepad1.left_stick_y);
+            robot.backRightDrive.setPower(-gamepad1.right_stick_y);
         }
-        if (gamepad1.left_stick_x >= 0.5) //If left stick right
+        if (gamepad1.right_stick_x >= 0.1 && gamepad1.left_stick_x > -0.1) //Strafing right
         {
-            //robot.drivePower = gamepad1.left_stick_x;
-            //Strafe right
-            robot.frontLeftDrive.setPower(-robot.drivePower);
-            robot.frontRightDrive.setPower(robot.drivePower);
-            robot.backLeftDrive.setPower(robot.drivePower);
-            robot.backRightDrive.setPower(-robot.drivePower);
+            //robot.frontLeftDrive.setPower(gamepad1.left_stick_x);
+            robot.frontRightDrive.setPower(1 * gamepad1.left_stick_x);
+            robot.backLeftDrive.setPower(-1 * gamepad1.left_stick_x);
+            //robot.backRightDrive.setPower(gamepad1.left_stick_x);
         }
+        if (gamepad1.left_stick_x <= -0.1 && gamepad1.right_stick_x < 0.1) //Strafing left
+        {
+            robot.frontLeftDrive.setPower(1*gamepad1.right_stick_x);
+           // robot.frontRightDrive.setPower(gamepad1.right_stick_x);
+           // robot.backLeftDrive.setPower(gamepad1.right_stick_x);
+            robot.backRightDrive.setPower(-1*gamepad1.right_stick_x);
+        }*/
 
-        if(gamepad1.right_stick_x <= -0.5) //If right stick left
-        {
-            //robot.drivePower = gamepad1.right_stick_x;
-            //Rotate left
-            robot.frontLeftDrive.setPower(robot.drivePower);
-            robot.frontRightDrive.setPower(-robot.drivePower);
-            robot.backLeftDrive.setPower(robot.drivePower);
-            robot.backRightDrive.setPower(-robot.drivePower);
-        }
-        if (gamepad1.right_stick_x >= 0.5) //If right stick right
-        {
-            //robot.drivePower = gamepad1.right_stick_x;
-            //Rotate right
-            robot.frontLeftDrive.setPower(-robot.drivePower);
-            robot.frontRightDrive.setPower(robot.drivePower);
-            robot.backLeftDrive.setPower(-robot.drivePower);
-            robot.backRightDrive.setPower(robot.drivePower);
-        }
 
-        robot.frontLeftDrive.setPower(0);
-        robot.frontRightDrive.setPower(0);
-        robot.backLeftDrive.setPower(0);
-        robot.backRightDrive.setPower(0);
+        robot.frontLeftDrive.setPower(v1);
+        robot.frontRightDrive.setPower(v2);
+        robot.backLeftDrive.setPower(v3);
+        robot.backRightDrive.setPower(v4);
 
-        if (this.gamepad1.x) {
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        if (gamepad1.left_bumper)
+        {
+            robot.boxSlammer.setPower(-0.75);
+        }
+        if (gamepad1.right_bumper)
+        {
+            robot.boxSlammer.setPower(1);
+        }
+        robot.boxSlammer.setPower(0);
+
+        if (gamepad1.left_trigger >= 0.5)
+        {
+            robot.boxStorage.setPower(-1);
+        }
+        if (gamepad1.right_trigger >= 0.5)
+        {
+            robot.boxStorage.setPower(1);
+        }
+        robot.boxStorage.setPower(0);
+
+        if (gamepad1.y)
+        {
+            robot.hanger.setPower(0.5);
+        }
+        if(gamepad1.a)
+        {
+            robot.hanger.setPower(-0.5);
+        }
+        robot.hanger.setPower(0);
+
+        /*if (this.gamepad1.x) {
             robot.playMusic(this.hardwareMap.appContext);
         }
         else if (gamepad1.y) {
             robot.stopMusic();
-        }
+        }*/
 
         telemetry.addData("Front Left Drive", robot.frontLeftDrive.getPower());
         telemetry.addData("Front Right Drive", robot.frontRightDrive.getPower());
