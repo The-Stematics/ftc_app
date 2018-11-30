@@ -181,6 +181,9 @@ public class MecanumDriveRobot
 
     public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
+        hanger.setPower(drivePower);
+        sleep(timeInMilliseconds);
+        driveBackward(0.5f, 750);
         hanger.setPower(-drivePower);
         sleep(timeInMilliseconds);
         hanger.setPower(0);
@@ -194,4 +197,6 @@ public class MecanumDriveRobot
         sleep(timeInMilliseconds);
         boxSlammer.setPower(0);
     }
+
+
 }

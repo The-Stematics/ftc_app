@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Year_2018_19.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.MecanumDriveRobot;
 
 @TeleOp(name="MecanumDriveTeleOp", group="TeleOpMode")
@@ -18,6 +20,10 @@ public class MecanumDriveTeleOp extends OpMode
     {
         robot.init(hardwareMap);
         robot.playR2D2Sound(this.hardwareMap.appContext);
+        robot.frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         telemetry.addData("Status", "Robot has initiated!");
         telemetry.update();
     }

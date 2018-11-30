@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Year_2018_19.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.MecanumDriveRobot;
 
@@ -12,10 +13,33 @@ public class MecanumDriveAutonomous extends LinearOpMode
 {
     private MecanumDriveRobot robot = new MecanumDriveRobot();
 
+    static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: TETRIX Motor Encoder
+    static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
+    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
+
     public void runOpMode() throws InterruptedException
     {
         robot.init(hardwareMap);
         robot.playR2D2Sound(this.hardwareMap.appContext);
+
+        robot.frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.frontRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        /*telemetry.addData("Path0",  "Starting at %7d :%7d",
+                robot.frontLeftDrive.getCurrentPosition(),
+                robot.frontRightDrive.getCurrentPosition()),
+                robot.backLeftDrive.getCurrentPosition(),
+                robot.backRightDrive.getCurrentPosition());
+        telemetry.update();*/
 
         if (gamepad1.x) {robot.state = 1;} //Left Alliance
         if (gamepad1.b) {robot.state = 2;} //Right Alliance
@@ -82,11 +106,16 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void LeftAlliance() throws InterruptedException
     {
-        robot.driveForward(1, 3000);
+        robot.hangerDown(1, 4500);
+        sleep(1);
+        robot.rotateLeft(0.5f, 1300);
+        robot.driveForward(1, 4000);
     }
 
     private void RightAlliance() throws InterruptedException
     {
+        robot.hangerDown(1, 4500);
+        robot.rotateLeft(0.5f, 1300);
         robot.driveForward(0.5f, 2500);
         robot.driveBackward(0.5f, 500);
         robot.dropMarker(0.25f, 1000);
