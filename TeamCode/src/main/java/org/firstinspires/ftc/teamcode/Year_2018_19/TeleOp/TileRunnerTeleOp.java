@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.TileRunnerRobot;
 
 @TeleOp(name="TileRunnerTeleOp", group="TeleOpMode")
-//@Disabled
+@Disabled
 
 public class TileRunnerTeleOp extends OpMode
 {

@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Year_2018_19.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.TreadDriveRobot;
 
 @Autonomous(name = "TreadDriveAutonomous", group = "AutonomousMode")
-//@Disabled
+@Disabled
 
 public class TreadDriveAutonomous extends LinearOpMode
 {

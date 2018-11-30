@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Year_2018_19.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.Year_2018_19.Robot.TreadDriveRobot;
 
 @TeleOp(name="TreadDriveTeleOp", group="TeleOpMode") //Makes Program Initiation
-//@Disabled //Disables program initiation, if you wish for the program to not show up.
+@Disabled //Disables program initiation, if you wish for the program to not show up.
 
 public class TreadDriveTeleOp extends OpMode //OpMode class
 {
