@@ -107,6 +107,16 @@ public class MecanumDriveTeleOp extends OpMode
         }
         robot.hanger.setPower(0);
 
+        if (gamepad1.x)
+        {
+            robot.hopper.setPower(-1);
+        }
+        if (gamepad1.b)
+        {
+            robot.hopper.setPower(1);
+        }
+        robot.hopper.setPower(0);
+
         /*if (this.gamepad1.x) {
             robot.playMusic(this.hardwareMap.appContext);
         }
