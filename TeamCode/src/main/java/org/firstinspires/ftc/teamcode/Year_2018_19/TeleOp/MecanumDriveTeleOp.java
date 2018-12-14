@@ -79,7 +79,7 @@ public class MecanumDriveTeleOp extends OpMode
         ////////////////////////////////////////////////////////////////////////////////////////////
         if (gamepad1.left_bumper)
         {
-            robot.boxSlammer.setPower(-0.75);
+            robot.boxSlammer.setPower(-1);
         }
         if (gamepad1.right_bumper)
         {
@@ -87,7 +87,8 @@ public class MecanumDriveTeleOp extends OpMode
         }
         robot.boxSlammer.setPower(0);
 
-        if (gamepad1.left_trigger >= 0.5)
+
+        /*if (gamepad1.left_trigger >= 0.5)
         {
             robot.boxStorage.setPower(-1);
         }
@@ -95,7 +96,8 @@ public class MecanumDriveTeleOp extends OpMode
         {
             robot.boxStorage.setPower(1);
         }
-        robot.boxStorage.setPower(0);
+        robot.boxStorage.setPower(0);*/
+        robot.boxArm.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
 
         if (gamepad1.y)
         {

@@ -26,7 +26,7 @@ public class MecanumDriveRobot
 
     //Box Arm
     public DcMotor boxSlammer;
-    public DcMotor boxStorage;
+    public DcMotor boxArm;
 
     //Hanger
     public DcMotor hanger;
@@ -50,7 +50,7 @@ public class MecanumDriveRobot
         backRightDrive = hwMap.get(DcMotor.class, "backRightDrive");
 
         boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
-        boxStorage = hwMap.get(DcMotor.class, "boxStorage");
+        boxArm = hwMap.get(DcMotor.class, "boxArm");
         hanger = hwMap.get(DcMotor.class, "hanger");
         hopper = hwMap.get(DcMotor.class, "hopper");
         hanger.setDirection(DcMotor.Direction.REVERSE);
