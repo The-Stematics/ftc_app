@@ -55,8 +55,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
 
-        //We commented this out to test an encoder drive below.
-        /*if (robot.state == 1)
+        if (robot.state == 1)
         {
             LeftAlliance();
         }
@@ -67,13 +66,13 @@ public class MecanumDriveAutonomous extends LinearOpMode
         else
         {
             LeftAlliance();
-        }*/
-        encoderDrive(0.5f, 12, 12, 12, 12, 5000);
+        }
+        /*encoderDrive(0.5f, 12, 12, 12, 12, 5000);
         sleep(1000);
         encoderDrive(1.0f, 12, -12, 12, -12, 5000);
         sleep(1000);
         encoderDrive(0.5f, 12, -12, -12, 12, 5000);
-        sleep (1000);
+        sleep (1000);*/
 
         robot.playMusic(this.hardwareMap.appContext);
 
@@ -115,13 +114,14 @@ public class MecanumDriveAutonomous extends LinearOpMode
     {
         robot.hangerDown(1, 4500);
         sleep(1);
-        robot.rotateLeft(0.5f, 1300);
-        robot.driveForward(1, 4000);
+        robot.rotateLeft(0.5f, 1500);
+        robot.driveForward(1, 4500);
     }
 
     private void RightAlliance() throws InterruptedException
     {
         robot.hangerDown(1, 4500);
+        sleep(1);
         robot.rotateLeft(0.5f, 1300);
         robot.driveForward(0.5f, 2500);
         robot.driveBackward(0.5f, 500);

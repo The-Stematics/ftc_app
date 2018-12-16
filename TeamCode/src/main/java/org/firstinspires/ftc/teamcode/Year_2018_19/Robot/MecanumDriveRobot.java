@@ -30,7 +30,6 @@ public class MecanumDriveRobot
 
     //Hanger
     public DcMotor hanger;
-    public DcMotor hopper;
 
 
     //public GyroSensor gyroSensor;
@@ -52,7 +51,6 @@ public class MecanumDriveRobot
         boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
         boxArm = hwMap.get(DcMotor.class, "boxArm");
         hanger = hwMap.get(DcMotor.class, "hanger");
-        hopper = hwMap.get(DcMotor.class, "hopper");
         hanger.setDirection(DcMotor.Direction.REVERSE);
         //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
         //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
