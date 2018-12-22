@@ -55,7 +55,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
 
-        if (robot.state == 1)
+        /*if (robot.state == 1)
         {
             LeftAlliance();
         }
@@ -66,13 +66,13 @@ public class MecanumDriveAutonomous extends LinearOpMode
         else
         {
             LeftAlliance();
-        }
-        /*encoderDrive(0.5f, 12, 12, 12, 12, 5000);
+        }*/
+        encoderDrive(0.5f, 12, 12, 12, 12, 5000);
         sleep(1000);
         encoderDrive(1.0f, 12, -12, 12, -12, 5000);
         sleep(1000);
         encoderDrive(0.5f, 12, -12, -12, 12, 5000);
-        sleep (1000);*/
+        sleep (1000);
 
         robot.playMusic(this.hardwareMap.appContext);
 
@@ -110,9 +110,11 @@ public class MecanumDriveAutonomous extends LinearOpMode
         robot.safetyStop();
     }
 
+    //TODO: Program a new hanger and drop-marker system for autonomous in MecanumDriveRobot program Line 176.
+    //TODO: Implement an encoder drive for the robot's drive train.
     private void LeftAlliance() throws InterruptedException
     {
-        robot.hangerDown(1, 4500);
+        //robot.hangerDown(1, 4500);
         sleep(1);
         robot.rotateLeft(0.5f, 1500);
         robot.driveForward(1, 4500);
@@ -120,12 +122,12 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void RightAlliance() throws InterruptedException
     {
-        robot.hangerDown(1, 4500);
+        //robot.hangerDown(1, 4500);
         sleep(1);
         robot.rotateLeft(0.5f, 1300);
         robot.driveForward(0.5f, 2500);
         robot.driveBackward(0.5f, 500);
-        robot.dropMarker(0.25f, 1000);
+        //robot.dropMarker(0.25f, 1000);
         robot.rotateRight(0.5f, 1800);
         robot.driveForward(1f, 4000);
     }

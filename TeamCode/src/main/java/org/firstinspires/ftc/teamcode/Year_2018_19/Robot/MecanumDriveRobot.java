@@ -18,19 +18,15 @@ import static java.lang.Thread.sleep;
 
 public class MecanumDriveRobot
 {
-    //The drivetrain
+    //Drivetrain Subsystem
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
 
-    //Box Arm
-    public DcMotor boxSlammer;
+    //Arm Subsystem
     public DcMotor boxArm;
-
-    //Hanger
-    public DcMotor hanger;
-
+    public DcMotor boxSlammer;
 
     //public GyroSensor gyroSensor;
     //public ColorSensor lineFollower;
@@ -48,10 +44,8 @@ public class MecanumDriveRobot
         backLeftDrive = hwMap.get(DcMotor.class, "backLeftDrive");
         backRightDrive = hwMap.get(DcMotor.class, "backRightDrive");
 
-        boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
         boxArm = hwMap.get(DcMotor.class, "boxArm");
-        hanger = hwMap.get(DcMotor.class, "hanger");
-        hanger.setDirection(DcMotor.Direction.REVERSE);
+        boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
         //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
         //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
 
@@ -179,7 +173,8 @@ public class MecanumDriveRobot
         backRightDrive.setPower(0);
     }
 
-    public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
+    //TODO: Program a new hanger and drop-marker system for autonomous.
+    /*public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
         hanger.setPower(drivePower);
         sleep(timeInMilliseconds);
@@ -196,7 +191,7 @@ public class MecanumDriveRobot
         boxSlammer.setPower(-drivePower);
         sleep(timeInMilliseconds);
         boxSlammer.setPower(0);
-    }
+    }*/
 
 
 }

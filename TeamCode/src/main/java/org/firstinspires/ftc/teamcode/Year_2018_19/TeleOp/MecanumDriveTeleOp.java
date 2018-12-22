@@ -99,17 +99,6 @@ public class MecanumDriveTeleOp extends OpMode
         robot.boxStorage.setPower(0);*/
         robot.boxArm.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
 
-        if (gamepad1.y)
-        {
-            robot.hanger.setPower(1);
-        }
-        if(gamepad1.a)
-        {
-            robot.hanger.setPower(-1);
-        }
-        robot.hanger.setPower(0);
-
-
         /*if (this.gamepad1.x) {
             robot.playMusic(this.hardwareMap.appContext);
         }
