@@ -28,6 +28,8 @@ public class MecanumDriveRobot
     public DcMotor boxArm;
     public DcMotor boxSlammer;
 
+    public Servo teamMarkerDropper;
+
     //public GyroSensor gyroSensor;
     //public ColorSensor lineFollower;
 
@@ -46,6 +48,7 @@ public class MecanumDriveRobot
 
         boxArm = hwMap.get(DcMotor.class, "boxArm");
         boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
+        teamMarkerDropper = hwMap.get(Servo.class, "teamMarkerDropper");
         //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
         //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
 
@@ -174,17 +177,17 @@ public class MecanumDriveRobot
     }
 
     //TODO: Program a new hanger and drop-marker system for autonomous.
-    /*public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
+    public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-        hanger.setPower(drivePower);
+        boxArm.setPower(-drivePower);
         sleep(timeInMilliseconds);
-        driveBackward(0.5f, 750);
-        hanger.setPower(-drivePower);
+        strafeLeft(1f, 1000);
+        boxArm.setPower(drivePower);
         sleep(timeInMilliseconds);
-        hanger.setPower(0);
+        boxArm.setPower(0);
     }
 
-    public void dropMarker(float drivePower, int timeInMilliseconds) throws InterruptedException
+    /*public void dropMarker(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
         boxSlammer.setPower(drivePower);
         sleep(timeInMilliseconds);

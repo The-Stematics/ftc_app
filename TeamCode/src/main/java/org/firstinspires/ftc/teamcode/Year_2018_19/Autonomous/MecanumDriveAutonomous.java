@@ -114,7 +114,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
     //TODO: Implement an encoder drive for the robot's drive train.
     private void LeftAlliance() throws InterruptedException
     {
-        //robot.hangerDown(1, 4500);
+        robot.hangerDown(1, 4500);
         sleep(1);
         robot.rotateLeft(0.5f, 1500);
         robot.driveForward(1, 4500);
@@ -122,12 +122,15 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void RightAlliance() throws InterruptedException
     {
-        //robot.hangerDown(1, 4500);
+        robot.hangerDown(1, 10000);
         sleep(1);
         robot.rotateLeft(0.5f, 1300);
         robot.driveForward(0.5f, 2500);
         robot.driveBackward(0.5f, 500);
-        //robot.dropMarker(0.25f, 1000);
+        robot.teamMarkerDropper.setPosition(1);
+        wait(1000);
+        robot.teamMarkerDropper.setPosition(0);
+        wait(1000);
         robot.rotateRight(0.5f, 1800);
         robot.driveForward(1f, 4000);
     }

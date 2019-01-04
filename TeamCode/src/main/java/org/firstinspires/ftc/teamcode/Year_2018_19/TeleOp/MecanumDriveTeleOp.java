@@ -47,30 +47,6 @@ public class MecanumDriveTeleOp extends OpMode
         final double v3 = r * Math.sin(robotAngle) + rightX;
         final double v4 = r * Math.cos(robotAngle) - rightX;
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
-        /*if (gamepad1.left_stick_x > -0.1 && gamepad1.right_stick_x < 0.1) { // Drive forward given the user ain't trying to strafe
-            robot.frontLeftDrive.setPower(-gamepad1.left_stick_y);
-            robot.frontRightDrive.setPower(-gamepad1.right_stick_y);
-            robot.backLeftDrive.setPower(-gamepad1.left_stick_y);
-            robot.backRightDrive.setPower(-gamepad1.right_stick_y);
-        }
-        if (gamepad1.right_stick_x >= 0.1 && gamepad1.left_stick_x > -0.1) //Strafing right
-        {
-            //robot.frontLeftDrive.setPower(gamepad1.left_stick_x);
-            robot.frontRightDrive.setPower(1 * gamepad1.left_stick_x);
-            robot.backLeftDrive.setPower(-1 * gamepad1.left_stick_x);
-            //robot.backRightDrive.setPower(gamepad1.left_stick_x);
-        }
-        if (gamepad1.left_stick_x <= -0.1 && gamepad1.right_stick_x < 0.1) //Strafing left
-        {
-            robot.frontLeftDrive.setPower(1*gamepad1.right_stick_x);
-           // robot.frontRightDrive.setPower(gamepad1.right_stick_x);
-           // robot.backLeftDrive.setPower(gamepad1.right_stick_x);
-            robot.backRightDrive.setPower(-1*gamepad1.right_stick_x);
-        }*/
-
-
         robot.frontLeftDrive.setPower(v1);
         robot.frontRightDrive.setPower(v2);
         robot.backLeftDrive.setPower(v3);
@@ -87,17 +63,8 @@ public class MecanumDriveTeleOp extends OpMode
         }
         robot.boxSlammer.setPower(0);
 
-
-        /*if (gamepad1.left_trigger >= 0.5)
-        {
-            robot.boxStorage.setPower(-1);
-        }
-        if (gamepad1.right_trigger >= 0.5)
-        {
-            robot.boxStorage.setPower(1);
-        }
-        robot.boxStorage.setPower(0);*/
         robot.boxArm.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
+
 
         /*if (this.gamepad1.x) {
             robot.playMusic(this.hardwareMap.appContext);
