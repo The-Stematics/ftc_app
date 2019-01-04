@@ -176,14 +176,17 @@ public class MecanumDriveRobot
         backRightDrive.setPower(0);
     }
 
-    //TODO: Program a new hanger and drop-marker system for autonomous.
     public void hangerDown(float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-        boxArm.setPower(-drivePower);
+        boxArm.setPower(-drivePower); //Move Arm Up
         sleep(timeInMilliseconds);
-        strafeLeft(1f, 1000);
-        boxArm.setPower(drivePower);
+        boxSlammer.setPower(drivePower); //Bring Box Up
+        sleep(timeInMilliseconds / 2);
+        strafeLeft(1f, 1000); //Strafe Out of the hanger/deployer
+        boxArm.setPower(drivePower); //Arm goes down
         sleep(timeInMilliseconds);
+        boxSlammer.setPower(-drivePower); //Box Down
+        sleep(timeInMilliseconds / 2);
         boxArm.setPower(0);
     }
 

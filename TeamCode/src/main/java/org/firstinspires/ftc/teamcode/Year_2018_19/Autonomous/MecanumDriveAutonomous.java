@@ -122,7 +122,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void RightAlliance() throws InterruptedException
     {
-        robot.hangerDown(1, 10000);
+        robot.hangerDown(1, 5000);
         sleep(1);
         robot.rotateLeft(0.5f, 1300);
         robot.driveForward(0.5f, 2500);
