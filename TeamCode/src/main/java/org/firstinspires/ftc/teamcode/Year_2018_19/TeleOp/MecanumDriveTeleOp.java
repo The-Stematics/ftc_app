@@ -34,7 +34,7 @@ public class MecanumDriveTeleOp extends OpMode
         robot.playBB8Sound(this.hardwareMap.appContext);
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
-        robot.teamMarkerDropper.setPosition(1);
+        //robot.teamMarkerDropper.setPosition(1);
     }
 
     //Called repeatedly after robot starts.
