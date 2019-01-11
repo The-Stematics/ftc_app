@@ -92,9 +92,17 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void LeftAlliance() throws InterruptedException
     {
-        robot.boxArm.setPower(-1);
-        wait(1000);
+        //encoderArmMove(1f, 0.25f, 0.25f, 1000); //Deploy
+        robot.boxArm.setPower(1);
+        robot.secondaryArmMotor.setPower(1);
+        sleep(2500);
         robot.boxArm.setPower(0);
+        robot.secondaryArmMotor.setPower(0);
+        encoderDrive(0.5f, 12f, -12f, -12f, 12f, 1000);
+        sleep(2500);
+        robot.boxArm.setPower(-1);
+        robot.secondaryArmMotor.setPower(-1);
+        sleep(2500);
         encoderDrive(1f, 2.5f*12, 2.5f*12, 2.5f*12, 2.5f*12, 1000); //Drive to crater
     }
 
@@ -108,18 +116,6 @@ public class MecanumDriveAutonomous extends LinearOpMode
         //wait(1000);
         robot.rotateRight(0.5f, 1800);
         robot.driveForward(1f, 4000);
-    }
-
-    private String formatRaw(int rawValue) {
-        return String.format("%d", rawValue);
-    }
-
-    private String formatRate(float rate) {
-        return String.format("%.3f", rate);
-    }
-
-    private String formatFloat(float rate) {
-        return String.format("%.3f", rate);
     }
 
     public void encoderDrive(double speed,
@@ -193,7 +189,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
         }
     }
 
-    public void encoderArm(double speed, double armInches, double secondaryArmInches, double timeoutS) {
+    public void encoderArmMove(double speed, double armInches, double secondaryArmInches, double timeoutS) {
         int newArmTarget;
         int newSecondaryArmTarget;
 
@@ -226,10 +222,8 @@ public class MecanumDriveAutonomous extends LinearOpMode
                     (robot.boxArm.isBusy() && robot.secondaryArmMotor.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Path1", "Running to %7d %7d %7d :%7d", newArmTarget, newSecondaryArmTarget);
-                telemetry.addData("Path2", "Running at %7d %7d %7d :%7d",
-                        robot.boxArm.getCurrentPosition(),
-                        robot.secondaryArmMotor.getCurrentPosition());
+                telemetry.addData("Path1", "Running to %7d :%7d", newArmTarget, newSecondaryArmTarget);
+                telemetry.addData("Path2", "Running at %7d :%7d", robot.boxArm.getCurrentPosition(), robot.secondaryArmMotor.getCurrentPosition());
                 telemetry.update();
             }
 

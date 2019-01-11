@@ -128,8 +128,8 @@ public class MecanumDriveRobot
 
     public void strafeLeft (float drivePower, int timeInMilliseconds) throws InterruptedException
     {
-        frontLeftDrive.setPower(drivePower);
-        frontRightDrive.setPower(-drivePower);
+        frontLeftDrive.setPower(-drivePower);
+        frontRightDrive.setPower(drivePower);
         backLeftDrive.setPower(drivePower);
         backRightDrive.setPower(-drivePower);
         sleep(timeInMilliseconds);
