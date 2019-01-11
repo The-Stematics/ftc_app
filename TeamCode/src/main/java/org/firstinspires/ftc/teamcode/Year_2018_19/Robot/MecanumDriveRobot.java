@@ -27,7 +27,7 @@ public class MecanumDriveRobot
     //Arm Subsystem
     public DcMotor boxArm;
     public DcMotor boxSlammer;
-
+    public DcMotor secondaryArmMotor;
     public Servo teamMarkerDropper;
 
     //public GyroSensor gyroSensor;
@@ -45,7 +45,7 @@ public class MecanumDriveRobot
         frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
         backLeftDrive = hwMap.get(DcMotor.class, "backLeftDrive");
         backRightDrive = hwMap.get(DcMotor.class, "backRightDrive");
-
+        secondaryArmMotor = hwMap.get(DcMotor.class, "secondaryArmMotor");
         boxArm = hwMap.get(DcMotor.class, "boxArm");
         boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
         teamMarkerDropper = hwMap.get(Servo.class, "teamMarkerDropper");
@@ -198,6 +198,12 @@ public class MecanumDriveRobot
         sleep(timeInMilliseconds);
         boxSlammer.setPower(0);
     }*/
+
+    public void BoxArm (float drivePower, int timeInMilliseconds) throws InterruptedException
+    {
+
+
+    }
 
 
 }

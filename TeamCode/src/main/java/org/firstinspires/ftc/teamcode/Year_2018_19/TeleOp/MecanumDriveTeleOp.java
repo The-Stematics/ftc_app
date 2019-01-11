@@ -34,6 +34,7 @@ public class MecanumDriveTeleOp extends OpMode
         robot.playBB8Sound(this.hardwareMap.appContext);
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
+        robot.teamMarkerDropper.setPosition(1);
     }
 
     //Called repeatedly after robot starts.
@@ -64,6 +65,7 @@ public class MecanumDriveTeleOp extends OpMode
         robot.boxSlammer.setPower(0);
 
         robot.boxArm.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
+        robot.secondaryArmMotor.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
 
 
         /*if (this.gamepad1.x) {
