@@ -25,7 +25,7 @@ public class MecanumDriveAutonomous extends LinearOpMode
         telemetry.update();
 
         waitForStart();
-        robot.teamMarkerDropper.setPosition(1);
+        //robot.teamMarkerDropper.setPosition(1);
         robot.playBB8Sound(this.hardwareMap.appContext);
         telemetry.addData("Status", "Robot has started!");
         telemetry.update();
@@ -90,10 +90,10 @@ public class MecanumDriveAutonomous extends LinearOpMode
     {
         robot.driveForward(1.2f, 1500);
         robot.driveBackward(1f, 800);
-        robot.teamMarkerDropper.setPosition(0);
+        //robot.teamMarkerDropper.setPosition(0);
         wait(1000);
-        robot.teamMarkerDropper.setPosition(1);
-       // wait(1000);
+        //robot.teamMarkerDropper.setPosition(1);
+        //wait(1000);
         robot.rotateRight(0.5f, 1800);
         robot.driveForward(1f, 4000);
     }
