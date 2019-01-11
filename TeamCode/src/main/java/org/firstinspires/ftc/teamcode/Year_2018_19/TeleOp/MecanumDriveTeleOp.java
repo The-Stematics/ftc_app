@@ -56,16 +56,16 @@ public class MecanumDriveTeleOp extends OpMode
         ////////////////////////////////////////////////////////////////////////////////////////////
         if (gamepad1.left_bumper)
         {
-            robot.boxSlammer.setPower(-1);
+            robot.boxSlammer.setPower(1);
         }
         if (gamepad1.right_bumper)
         {
-            robot.boxSlammer.setPower(1);
+            robot.boxSlammer.setPower(-1);
         }
         robot.boxSlammer.setPower(0);
 
-        robot.boxArm.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
-        robot.secondaryArmMotor.setPower(-gamepad1.left_trigger + gamepad1.right_trigger);
+        robot.boxArm.setPower(gamepad1.left_trigger + -gamepad1.right_trigger);
+        robot.secondaryArmMotor.setPower(gamepad1.left_trigger + -gamepad1.right_trigger);
 
 
         /*if (this.gamepad1.x) {

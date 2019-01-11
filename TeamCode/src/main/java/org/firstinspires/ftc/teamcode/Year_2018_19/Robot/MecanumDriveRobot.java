@@ -28,7 +28,7 @@ public class MecanumDriveRobot
     public DcMotor boxArm;
     public DcMotor boxSlammer;
     public DcMotor secondaryArmMotor;
-    public Servo teamMarkerDropper;
+    //public Servo teamMarkerDropper;
 
     //public GyroSensor gyroSensor;
     //public ColorSensor lineFollower;
@@ -48,12 +48,14 @@ public class MecanumDriveRobot
         secondaryArmMotor = hwMap.get(DcMotor.class, "secondaryArmMotor");
         boxArm = hwMap.get(DcMotor.class, "boxArm");
         boxSlammer = hwMap.get(DcMotor.class, "boxSlammer");
-        teamMarkerDropper = hwMap.get(Servo.class, "teamMarkerDropper");
+        //steamMarkerDropper = hwMap.get(Servo.class, "teamMarkerDropper");
         //gyroSensor = hwMap.get(GyroSensor.class, "gyroSensor");
         //lineFollower = hwMap.get(ColorSensor.class, "lineFollower");
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        boxArm.setDirection(DcMotor.Direction.REVERSE);
+        secondaryArmMotor.setDirection(DcMotor.Direction.REVERSE);
 
         /*frontLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
