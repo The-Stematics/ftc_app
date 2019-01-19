@@ -92,30 +92,42 @@ public class MecanumDriveAutonomous extends LinearOpMode
 
     private void LeftAlliance() throws InterruptedException
     {
-        //encoderArmMove(1f, 0.25f, 0.25f, 1000); //Deploy
-        robot.boxArm.setPower(1);
-        robot.secondaryArmMotor.setPower(1);
+        robot.boxArm.setPower(1); //Deploy.
+        robot.secondaryArmMotor.setPower(1); //Deploy.
         sleep(2500);
         robot.boxArm.setPower(0);
         robot.secondaryArmMotor.setPower(0);
-        encoderDrive(0.5f, 12f, -12f, -12f, 12f, 1000);
+        encoderDrive(0.5f, 12f, -12f, -12f, 12f, 1000); //Get arm out of hanger.
         sleep(2500);
-        robot.boxArm.setPower(-1);
-        robot.secondaryArmMotor.setPower(-1);
+        robot.boxArm.setPower(-1); //Move arm to resting position.
+        robot.secondaryArmMotor.setPower(-1); //Move arm to resting position.
+        sleep(2500);
+        encoderDrive(0.5f, 12f, -12f, 12f, -12f, 1000); //Face the crater.
         sleep(2500);
         encoderDrive(1f, 2.5f*12, 2.5f*12, 2.5f*12, 2.5f*12, 1000); //Drive to crater
     }
 
     private void RightAlliance() throws InterruptedException
     {
-        robot.driveForward(1.2f, 1500);
-        robot.driveBackward(1f, 800);
-        //robot.teamMarkerDropper.setPosition(0);
-        wait(1000);
-        //robot.teamMarkerDropper.setPosition(1);
-        //wait(1000);
-        robot.rotateRight(0.5f, 1800);
-        robot.driveForward(1f, 4000);
+        robot.boxArm.setPower(1); //Deploy.
+        robot.secondaryArmMotor.setPower(1); //Deploy.
+        sleep(2500);
+        robot.boxArm.setPower(0);
+        robot.secondaryArmMotor.setPower(0);
+        encoderDrive(0.5f, 12f, -12f, -12f, 12f, 1000); //Get arm out of hanger.
+        sleep(2500);
+        robot.boxArm.setPower(-1); //Move arm to resting position.
+        robot.secondaryArmMotor.setPower(-1); //Move arm to resting position.
+        sleep(2500);
+        encoderDrive(0.5f, 12f, -12f, 12f, -12f, 1000); //Face the depot.
+        sleep(2500);
+        encoderDrive(1f, 2.5f*12, 2.5f*12, 2.5f*12, 2.5f*12, 1000); //Drive to depot.
+        sleep(1);
+        encoderDrive(1f, -3f, -3f, -3f, -3f, 1000); //Throw team marker using forward momentum.
+        sleep(2500);
+        encoderDrive(0.5f, 12f, -12f, 12f, -12f, 1000); //Face the crater.
+        sleep(2500);
+        encoderDrive(1f, 10f*12, 10f*12, 10f*12, 10f*12, 1000); //Drive to the crater.
     }
 
     public void encoderDrive(double speed,
@@ -186,56 +198,6 @@ public class MecanumDriveAutonomous extends LinearOpMode
             robot.frontRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
-
-    public void encoderArmMove(double speed, double armInches, double secondaryArmInches, double timeoutS) {
-        int newArmTarget;
-        int newSecondaryArmTarget;
-
-        // Ensure that the opmode is still active
-        if (opModeIsActive()) {
-
-            // Determine new target position, and pass to motor controller
-            newArmTarget = robot.frontLeftDrive.getCurrentPosition() + (int) (armInches * COUNTS_PER_INCH);
-            newSecondaryArmTarget = robot.frontRightDrive.getCurrentPosition() + (int) (secondaryArmInches * COUNTS_PER_INCH);
-            robot.boxArm.setTargetPosition(newArmTarget);
-            robot.secondaryArmMotor.setTargetPosition(newSecondaryArmTarget);
-
-            // Turn On RUN_TO_POSITION
-            robot.boxArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.secondaryArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // reset the timeout time and start motion.
-            runtime.reset();
-            robot.boxArm.setPower(Math.abs(speed));
-            robot.secondaryArmMotor.setPower(Math.abs(speed));
-
-            // keep looping while we are still active, and there is time left, and both motors are running.
-            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
-            // its target position, the motion will stop.  This is "safer" in the event that the robot will
-            // always end the motion as soon as possible.
-            // However, if you require that BOTH motors have finished their moves before the robot continues
-            // onto the next step, use (isBusy() || isBusy()) in the loop test.
-            while (opModeIsActive() &&
-                    (runtime.seconds() < timeoutS) &&
-                    (robot.boxArm.isBusy() && robot.secondaryArmMotor.isBusy())) {
-
-                // Display it for the driver.
-                telemetry.addData("Path1", "Running to %7d :%7d", newArmTarget, newSecondaryArmTarget);
-                telemetry.addData("Path2", "Running at %7d :%7d", robot.boxArm.getCurrentPosition(), robot.secondaryArmMotor.getCurrentPosition());
-                telemetry.update();
-            }
-
-
-            // Stop all motion;
-            robot.boxArm.setPower(0);
-            robot.secondaryArmMotor.setPower(0);
-
-
-            // Turn off RUN_TO_POSITION
-            robot.boxArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.secondaryArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 }

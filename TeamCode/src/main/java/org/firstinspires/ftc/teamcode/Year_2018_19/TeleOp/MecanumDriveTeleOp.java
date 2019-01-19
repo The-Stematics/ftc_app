@@ -54,18 +54,18 @@ public class MecanumDriveTeleOp extends OpMode
         robot.backRightDrive.setPower(v4);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        if (gamepad1.left_bumper)
+        if (gamepad1.left_bumper || gamepad2.left_bumper)
         {
             robot.boxSlammer.setPower(1);
         }
-        if (gamepad1.right_bumper)
+        if (gamepad1.right_bumper || gamepad2.right_bumper)
         {
             robot.boxSlammer.setPower(-1);
         }
         robot.boxSlammer.setPower(0);
 
-        robot.boxArm.setPower(gamepad1.left_trigger + -gamepad1.right_trigger);
-        robot.secondaryArmMotor.setPower(gamepad1.left_trigger + -gamepad1.right_trigger);
+        robot.boxArm.setPower(gamepad1.left_trigger + -gamepad1.right_trigger + gamepad2.left_trigger + -gamepad2.right_trigger);
+        robot.secondaryArmMotor.setPower(gamepad1.left_trigger + -gamepad1.right_trigger + gamepad2.left_trigger + -gamepad2.right_trigger);
 
 
         /*if (this.gamepad1.x) {
